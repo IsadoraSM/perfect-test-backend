@@ -44,6 +44,6 @@ class ProductController extends Controller
 
         $image->storeAs("public/productImages/$uuid", $nameFile);
 
-        return "productImages/$uuid/$nameFile";
+        return "storage/productImages/$uuid/$nameFile";
     }
 }
