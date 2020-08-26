@@ -12,8 +12,7 @@ class ProductController extends Controller
 {
     public function create()
     {
-        $actionRoute = 'product.store';
-        return view('crud_products', compact('actionRoute'));
+        return view('product.create');
     }
 
     public function store(StoreProduct $request)
