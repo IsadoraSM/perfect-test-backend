@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreProduct;
 use App\Models\Product;
 use Webpatser\Uuid\Uuid;
+use App\Http\Requests\UpdateProduct;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -28,6 +30,35 @@ class ProductController extends Controller
         ]);
 
         Product::create($request->all());
+
+        return redirect()->route('dashboard');
+    }
+
+        
+    public function edit($uuid)
+    {
+        $product = Product::where('uuid', $uuid)->first();
+
+        return view('product.edit', compact('product'));
+    }
+
+    public function update(UpdateProduct $request, $uuid)
+    {
+        $product = Product::where('uuid', $uuid)->first();
+
+        if($request->image){
+            if($product->local_image != 'img/product/default.png'){
+                Storage::delete($product->local_image);
+            }
+
+            $local_image = $this->saveImage($request->image, $uuid);
+
+            $request->merge([
+                'local_image' => $local_image
+            ]);
+        }
+
+        $product->update($request->all());
 
         return redirect()->route('dashboard');
     }

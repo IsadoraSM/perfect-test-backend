@@ -182,7 +182,7 @@
                             R$ {{ number_format($product->price,2,',','.') }}
                         </td>
                         <td>
-                            <a href='' class='btn btn-primary'>Editar</a>
+                            <a href='{{route('product.edit', ['uuid' => $product->uuid])}}' class='btn btn-primary'>Editar</a>
                             <a href='' class='btn btn-danger'>Excluir</a>
                         </td>
                     </tr>
