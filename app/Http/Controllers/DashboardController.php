@@ -18,6 +18,6 @@ class DashboardController extends Controller
                             ->groupBy('status')
                             ->get();
                             
-        return view('dashboard', compact('products', 'sales', 'result_sales'));
+        return view('dashboard.index', compact('products', 'sales', 'result_sales'));
     }
 }
