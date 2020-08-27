@@ -1,36 +1,9 @@
- # Você quer ser um desenvolvedor Backend na Perfectpay? 
- O desafio é desenvolver um sistema de vendas onde consiste um cadastro de produtos, o próprio cadastro de vendas onde será preenchido alguns dados também referente a cliente, uma dashboard onde estará
-centralizado os dados de produtos, consulta de vendas e um relatório simplificado de vendas.
- 
- # Instruções
- - O foco principal do nosso teste é o backend. Para facilitar você poderá utilizar os blade.php que disponibilizamos no projeto.
- - Fique à vontade para usar bibliotecas/componentes externos
- - Seguir princípios **CLEAN CODE** 
- - Utilize boas práticas de programação
- - Utilize boas práticas de git
- - Documentar como rodar o projeto
- 
- # Requisitos
- - O sistema deverá ser desenvolvido utilizando a linguagem PHP no framework Laravel.
- - Você deve criar um CRUD que permita cadastrar as seguintes informações:
- 	- **Produto**: Nome, Descrição e Preço.
- 	- **Venda**: Produto,Data da venda, Quantidade do produto, Desconto, Status da venda.
-	- **Cliente**: Nome, Email, CPF.
- - Salvar as informações necessárias em um banco de dados (relacional) de preferência MySql.
- - Exibir todos os dados na dashboard conforme exemplo deixado na blade.php.
+## Requisitos
+- PHP 7.1 ou +
+- MSYQL/PHPMyADMIN
+- Composer (https://getcomposer.org/)
 
- 
- # Opcionais
- - Testes automatizados com informação da cobertura de testes
- - Upload de imagem no cadastro de produtos
- 
- # O que será avaliado
- - Estrutura e organização do código e dos arquivos
- - Qualidade
- - Enfim, tudo será observado e levado em conta
- 
- # Como iniciar o desenvolvimento
- - Fork esse repositório na sua conta do GitHub.
- - Crie uma branch com o nome desafio
- 
- Qualquer dúvida sobre o teste, fique a vontade para entrar em contato conosco.
+## Como utilizar
+- 1) Acesse o arquivo ".env" e configure os campos APP_URL com a URL completa do projeto, DB_DATABASE com o nome do banco de dados criado no PHPMYADMIN, DB_USERNAME e DB_PASSWORD com login e senha do banco de dados. (Utilize o WAMP caso utilize Windows e acesse o PHPMYADMIN para criar o banco de dados para o site.)
+- 2) No terminal digite (sem aspas): "composer install" - Para que seja instalado todas as dependências do LARAVEL
+- 3) No terminal digite (sem aspas): "php artisan migrate" - Para que o sistema crie todas as tabelas e colunas do banco de dados.
