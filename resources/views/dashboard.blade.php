@@ -53,23 +53,31 @@
                         Ações
                     </th>
                 </tr>
-                @foreach($sales as $sale)
+                @if(count($sales) > 0)
+                    @foreach($sales as $sale)
+                        <tr>
+                            <td>
+                                {{$sale->product->name}}
+                            </td>
+                            <td>
+                                {{\Carbon\Carbon::parse($sale->date)->format('d/m/Y')}} {{\Carbon\Carbon::parse($sale->hour)->format('H:m')}}
+                            </td>
+                            <td>
+                                R$ {{ number_format($sale->final_price,2,',','.') }}
+                            </td>
+                            <td>
+                                <a href='' class='btn btn-primary'>Editar</a>
+                                <a href='' class='btn btn-danger'>Excluir</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr>
-                        <td>
-                            {{$sale->product->name}}
-                        </td>
-                        <td>
-                            {{\Carbon\Carbon::parse($sale->date)->format('d/m/Y')}} {{\Carbon\Carbon::parse($sale->hour)->format('H:m')}}
-                        </td>
-                        <td>
-                            R$ {{ number_format($sale->final_price,2,',','.') }}
-                        </td>
-                        <td>
-                            <a href='' class='btn btn-primary'>Editar</a>
-                            <a href='' class='btn btn-danger'>Excluir</a>
+                        <td colspan="4" style="vertical-align : middle; text-align:center;">
+                            Nenhuma venda cadastrada
                         </td>
                     </tr>
-                @endforeach
+                @endif
             </table>
         </div>
     </div>
@@ -144,24 +152,32 @@
                         Ações
                     </th>
                 </tr>
-                @foreach($products as $product)
+                @if(count($products) > 0 )
+                    @foreach($products as $product)
+                        <tr>
+                            <td> 
+                                <img class="mx-auto d-block img-thumbnail img-fluid" width="70" height="70" 
+                                            src="{{ asset($product->local_image) }}">
+                            </td>
+                            <td>
+                                {{$product->name}}
+                            </td>
+                            <td>
+                                R$ {{ number_format($product->price,2,',','.') }}
+                            </td>
+                            <td>
+                                <a href='{{route('product.edit', ['uuid' => $product->uuid])}}' class='btn btn-primary'>Editar</a>
+                                <a href='' class='btn btn-danger'>Excluir</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr>
-                        <td> 
-                            <img class="mx-auto d-block img-thumbnail img-fluid" width="70" height="70" 
-                                        src="{{ asset($product->local_image) }}">
-                        </td>
-                        <td>
-                            {{$product->name}}
-                        </td>
-                        <td>
-                            R$ {{ number_format($product->price,2,',','.') }}
-                        </td>
-                        <td>
-                            <a href='{{route('product.edit', ['uuid' => $product->uuid])}}' class='btn btn-primary'>Editar</a>
-                            <a href='' class='btn btn-danger'>Excluir</a>
+                        <td colspan="4" style="vertical-align : middle; text-align:center;">
+                            Nenhum produto cadastrado
                         </td>
                     </tr>
-                @endforeach
+                @endif
             </table>
         </div>
     </div>
