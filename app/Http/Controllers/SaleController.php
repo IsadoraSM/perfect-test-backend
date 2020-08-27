@@ -24,13 +24,13 @@ class SaleController extends Controller
         $product = Product::find($request->product_id);
         
         if($request->discount){
-            $final_price = $product->price - $request->discount;
+            $final_price = ($product->price * $request->quantity) - $request->discount;
         }else{
             $request->merge([
                 'discount' => 0
             ]);
 
-            $final_price = $product->price;
+            $final_price = $product->price * $request->quantity;
         }
 
         $uuid = Uuid::generate(4)->string;
@@ -62,13 +62,13 @@ class SaleController extends Controller
         $product = Product::find($request->product_id);
 
         if($request->discount){
-            $final_price = $product->price - $request->discount;
+            $final_price = ($product->price * $request->quantity) - $request->discount;
         }else{
             $request->merge([
                 'discount' => 0
             ]);
 
-            $final_price = $product->price;
+            $final_price = $product->price * $request->quantity;
         }
 
         $uuid = Uuid::generate(4)->string;
