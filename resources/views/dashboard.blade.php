@@ -101,10 +101,10 @@
                         Vendidos
                     </td>
                     <td>
-                        100
+                        {{ isset($result_sales[0]) ? $result_sales[0]->quantity : '0' }}
                     </td>
                     <td>
-                        R$ 100,00
+                        R$ {{ isset($result_sales[0]) ? number_format($result_sales[0]->total,2,',','.') : '0,00' }}
                     </td>
                 </tr>
                 <tr>
@@ -112,10 +112,10 @@
                         Cancelados
                     </td>
                     <td>
-                        120
+                        {{ isset($result_sales[1]) ? $result_sales[1]->quantity : '0' }}
                     </td>
                     <td>
-                        R$ 100,00
+                        R$ {{ isset($result_sales[1]) ? number_format($result_sales[1]->total,2,',','.') : '0,00' }}
                     </td>
                 </tr>
                 <tr>
@@ -123,10 +123,10 @@
                         Devoluções
                     </td>
                     <td>
-                        120
+                        {{ isset($result_sales[2]) ? $result_sales[2]->quantity : '0' }}
                     </td>
                     <td>
-                        R$ 100,00
+                        R$ {{ isset($result_sales[2]) ? number_format($result_sales[2]->total,2,',','.') : '0,00' }}
                     </td>
                 </tr>
             </table>
