@@ -31,7 +31,8 @@
     <div class="col-8">
         <div class="form-group">
             <label for="image">Imagem do produto</label>
-            <input type="file" class="form-control @if($errors->has('image')) is-invalid @endif" id="image" name="image" accept="image/*">
+            <input type="file" class="form-control @if($errors->has('image')) is-invalid @endif" id="image" 
+                    name="image" accept="image/*" onchange="uploadImage(event);">
             @if($errors->has('image'))
                 <div class="invalid-feedback">
                     <strong>{{ $errors->first('image') }}</strong>
@@ -39,7 +40,14 @@
             @endif
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-4 d-flex justify-content-center mb-3">
+        <img id="productImage" class="img-thumbnail"
+            @if(isset($product->local_image))
+                src="{{ asset($product->local_image) }}"
+            @else
+                src="{{ asset('img/product/default.png') }}"
+            @endif
+            width="140" height="140"/>
     </div>
 </div>
 
