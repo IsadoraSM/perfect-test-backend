@@ -66,7 +66,7 @@
                                 R$ {{ number_format($sale->final_price,2,',','.') }}
                             </td>
                             <td>
-                                <a href='' class='btn btn-primary'>Editar</a>
+                                <a href='{{route('sale.edit', ['uuid' => $sale->uuid])}}' class='btn btn-primary'>Editar</a>
                                 <a href='' class='btn btn-danger'>Excluir</a>
                             </td>
                         </tr>

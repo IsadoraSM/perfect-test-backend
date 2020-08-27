@@ -14,4 +14,6 @@ Route::group(['prefix' => 'product'], function () {
 Route::group(['prefix' => 'sale'], function () {
     Route::get('/', 'SaleController@create')->name('sale.create');
     Route::post('/', 'SaleController@store')->name('sale.store');
+    Route::get('/edit/{uuid}', 'SaleController@edit')->name('sale.edit');
+    Route::post('/update/{uuid}', 'SaleController@update')->name('sale.update');
 });

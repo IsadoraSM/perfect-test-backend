@@ -6,6 +6,7 @@ use Webpatser\Uuid\Uuid;
 use App\Models\Product;
 use App\Http\Requests\StoreSale;
 use App\Models\Sale;
+use App\Http\Requests\UpdateSale;
 
 class SaleController extends Controller
 {
@@ -40,6 +41,44 @@ class SaleController extends Controller
         ]);
         
         Sale::create($request->all());
+
+        return redirect()->route('dashboard');
+    }
+
+    public function edit($uuid)
+    {
+        $sale = Sale::where('uuid', $uuid)->first();
+
+        $products = Product::select('id', 'name')
+                            ->orderBy('name')
+                            ->get();
+
+        return view('sale.edit', compact('products', 'sale'));
+    }
+
+    public function update(UpdateSale $request, $uuid){
+        $sale = Sale::where('uuid', $uuid)->first();
+        
+        $product = Product::find($request->product_id);
+
+        if($request->discount){
+            $final_price = $product->price - $request->discount;
+        }else{
+            $request->merge([
+                'discount' => 0
+            ]);
+
+            $final_price = $product->price;
+        }
+
+        $uuid = Uuid::generate(4)->string;
+
+        $request->merge([
+            'uuid' => $uuid,
+            'final_price' => $final_price
+        ]);
+        
+        $sale->update($request->all());
 
         return redirect()->route('dashboard');
     }
