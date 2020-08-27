@@ -76,4 +76,19 @@ class ProductController extends Controller
 
         return "storage/productImages/$uuid/$nameFile";
     }
+
+    public function destroy($uuid)
+    {
+        $product = Product::where('uuid', $uuid)->first();
+
+        if($product->local_image != 'img/product/default.png'){
+            Storage::delete('public');
+        }
+
+        $product->sales()->delete();
+        
+        $product->delete();
+
+        return redirect()->route('dashboard');
+    }
 }

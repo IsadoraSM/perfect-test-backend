@@ -166,8 +166,14 @@
                                 R$ {{ number_format($product->price,2,',','.') }}
                             </td>
                             <td>
-                                <a href='{{route('product.edit', ['uuid' => $product->uuid])}}' class='btn btn-primary'>Editar</a>
-                                <a href='' class='btn btn-danger'>Excluir</a>
+                                <form action="{{route('product.delete', ['uuid' => $product->uuid])}}" method="POST">                                    
+                                    {{ method_field('delete') }}
+                                    {{ csrf_field() }}
+                                    <div style="display: flex; justify-content: space-around">
+                                        <a href='{{route('product.edit', ['uuid' => $product->uuid])}}' class='btn btn-primary'>Editar</a>
+                                        <button class='btn btn-danger' type="submit">Excluir</button>
+                                    </div>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

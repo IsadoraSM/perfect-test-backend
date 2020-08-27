@@ -9,6 +9,7 @@ Route::group(['prefix' => 'product'], function () {
     Route::post('/', 'ProductController@store')->name('product.store');
     Route::get('/edit/{uuid}', 'ProductController@edit')->name('product.edit');
     Route::post('/update/{uuid}', 'ProductController@update')->name('product.update');
+    Route::delete('/delete/{uuid}', 'ProductController@destroy')->name('product.delete');
 });
 
 Route::group(['prefix' => 'sale'], function () {
