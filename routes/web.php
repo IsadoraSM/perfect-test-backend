@@ -17,4 +17,5 @@ Route::group(['prefix' => 'sale'], function () {
     Route::post('/', 'SaleController@store')->name('sale.store');
     Route::get('/edit/{uuid}', 'SaleController@edit')->name('sale.edit');
     Route::post('/update/{uuid}', 'SaleController@update')->name('sale.update');
+    Route::delete('/delete/{uuid}', 'SaleController@destroy')->name('sale.delete');
 });

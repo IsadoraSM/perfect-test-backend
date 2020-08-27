@@ -66,8 +66,14 @@
                                 R$ {{ number_format($sale->final_price,2,',','.') }}
                             </td>
                             <td>
-                                <a href='{{route('sale.edit', ['uuid' => $sale->uuid])}}' class='btn btn-primary'>Editar</a>
-                                <a href='' class='btn btn-danger'>Excluir</a>
+                                <form action="{{route('sale.delete', ['uuid' => $sale->uuid])}}" method="POST">                                    
+                                    {{ method_field('delete') }}
+                                    {{ csrf_field() }}
+                                    <div style="display: flex; justify-content: space-around">
+                                        <a href='{{route('sale.edit', ['uuid' => $sale->uuid])}}' class='btn btn-primary'>Editar</a>
+                                        <button class='btn btn-danger' type="submit">Excluir</button>
+                                    </div>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

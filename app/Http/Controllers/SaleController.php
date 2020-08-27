@@ -82,4 +82,10 @@ class SaleController extends Controller
 
         return redirect()->route('dashboard');
     }
+
+    public function destroy($uuid){
+        Sale::where('uuid', $uuid)->first()->delete();
+
+        return redirect()->route('dashboard');
+    }
 }
