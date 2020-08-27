@@ -5,7 +5,7 @@
     <div class='card mt-3'>
         <div class='card-body'>
             <h5 class="card-title mb-5">Tabela de vendas
-                <a href='' class='btn btn-secondary float-right btn-sm rounded-pill'><i class='fa fa-plus'></i>  Nova venda</a></h5>
+                <a href='{{route('sale.create')}}' class='btn btn-secondary float-right btn-sm rounded-pill'><i class='fa fa-plus'></i>  Nova venda</a></h5>
             <form>
                 <div class="form-row align-items-center">
                     <div class="col-sm-5 my-1">
@@ -53,48 +53,23 @@
                         Ações
                     </th>
                 </tr>
-                <tr>
-                    <td>
-                        Perfect Caps
-                    </td>
-                    <td>
-                        20/07/2019 19h15
-                    </td>
-                    <td>
-                        R$ 100,00
-                    </td>
-                    <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Nature Caps
-                    </td>
-                    <td>
-                        20/07/2019 19h20
-                    </td>
-                    <td>
-                        R$ 125,00
-                    </td>
-                    <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Libid Caps
-                    </td>
-                    <td>
-                        20/07/2019 19h45
-                    </td>
-                    <td>
-                        R$ 110,00
-                    </td>
-                    <td>
-                        <a href='' class='btn btn-primary'>Editar</a>
-                    </td>
-                </tr>
+                @foreach($sales as $sale)
+                    <tr>
+                        <td>
+                            {{$sale->product->name}}
+                        </td>
+                        <td>
+                            {{\Carbon\Carbon::parse($sale->date)->format('d/m/Y')}} {{\Carbon\Carbon::parse($sale->hour)->format('H:m')}}
+                        </td>
+                        <td>
+                            R$ {{ number_format($sale->final_price,2,',','.') }}
+                        </td>
+                        <td>
+                            <a href='' class='btn btn-primary'>Editar</a>
+                            <a href='' class='btn btn-danger'>Excluir</a>
+                        </td>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>
