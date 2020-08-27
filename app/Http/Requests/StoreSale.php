@@ -17,7 +17,7 @@ class StoreSale extends FormRequest
         return [
             'client_name' => 'required',
             'client_email' => 'required',
-            'client_cpf' => 'required',
+            'client_cpf' => 'required|max:14',
             'product_id' => 'required',
             'date' => 'required|date_format:Y-m-d|before_or_equal: today',
             'hour' => 'required',
@@ -33,6 +33,7 @@ class StoreSale extends FormRequest
             'client_name.required' => 'Informe o nome do cliente',
             'client_email.required' => 'Informe o email do cliente',
             'client_cpf.required' => 'Informe o CPF do cliente',
+            'client_cpf.max' => 'O número de digitos do CPF foi ultrapassado: 14 (quatorze)',
             'product_id.required' => 'Selecione um produto',
             'date.required' => 'Informe o dia que a venda foi realizada',
             'date.before_or_equal' => 'O dia da venda deve ser igual ou anterior ao dia de hoje',
