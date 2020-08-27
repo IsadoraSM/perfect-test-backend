@@ -31,7 +31,12 @@
     <div class="col-8">
         <div class="form-group">
             <label for="image">Imagem do produto</label>
-            <input type="file" class="form-control" id="image" name="image" accept="image/*">
+            <input type="file" class="form-control @if($errors->has('image')) is-invalid @endif" id="image" name="image" accept="image/*">
+            @if($errors->has('image'))
+                <div class="invalid-feedback">
+                    <strong>{{ $errors->first('image') }}</strong>
+                </div>
+            @endif
         </div>
     </div>
     <div class="col-4">

@@ -16,7 +16,8 @@ class UpdateProduct extends FormRequest
         return [
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required|numeric|min:100'
+            'price' => 'required|numeric|min:100',
+            'image' => 'mimes:jpeg,bmp,png'
         ];
     }
 
@@ -28,6 +29,7 @@ class UpdateProduct extends FormRequest
             'price.required' => 'Informe o valor do produto',
             'price.numeric' => 'O valor do produto está inválido',
             'price.min' => 'O valor do produto deve ser de no mínimo R$100,00',
+            'image.mimes' => 'A extenção da imagem do produto precisa ser png ou jpeg'
         ];
     }
 
